@@ -46,7 +46,6 @@ class AutocompleteTextInput(TextInput):
 
     def find_submodels(self, model_name):
         # Simulate finding available submodels
-        # Replace with your logic to fetch available submodels for the main model
         return ["Submodel 1", "Submodel 2", "Submodel 3"]
 
     def show_submodel_popup(self, submodels):
@@ -59,17 +58,7 @@ class AutocompleteTextInput(TextInput):
         submodel_popup.content = submodel_layout
         submodel_popup.open()
 
-    def generate_plugin(self, main_model, submodel=None):
-        # Implement your logic for generating the plugin here
-        plugin_data = {
-            'main_model': main_model,
-            'submodel': submodel,
-            'settings': {}  # Placeholder for settings data
-        }
-        plugin_filename = f'{main_model.lower()}_plugin.json'
-        with open(plugin_filename, 'w') as plugin_file:
-            json.dump(plugin_data, plugin_file)
-
+   
     def on_text_validate(self, instance):
         self.add_model()
 
@@ -86,15 +75,13 @@ class AutocompleteTextInput(TextInput):
     def add_model(self):
         model_name = self.text.strip()
         if model_name:
-            # Simulate the generation process using Clock.schedule_once
             self.loading_widget = LoadingWidget()
             self.add_widget(self.loading_widget)
             self.loading_widget.start_loading()
 
-            Clock.schedule_once(self.generate_plugin, 2)  # Simulating 2 seconds for plugin generation
+            Clock.schedule_once(self.generate_plugin, 2) 
 
     def generate_plugin(self, dt):
-        # Implement your logic for generating the plugin here
         self.remove_widget(self.loading_widget)
         
 class LoadingWidget(BoxLayout):
